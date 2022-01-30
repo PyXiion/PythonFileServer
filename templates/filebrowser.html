@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>{{path}}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/static/filebrowser.css'>
+</head>
+<body>
+    <h1>{{path}}</h1>
+    <div id=folders>
+        <h3>Folders</h3>
+        <ul>
+            <li><a class=folder href="/{{path.parent}}">..</a></li>
+            {% for folder in folders %}
+            <li><a class=folder href="{{folder}}">{{folder.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>  
+
+    <div if=files>
+        <h3>Files</h3>
+
+        <ul>
+            {% for file in files %}
+            <li><a class=file href="/{{file}}">{{file.name}}</a> {{ file_size(file) }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
